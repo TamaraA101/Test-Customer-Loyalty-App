@@ -38,8 +38,8 @@ const userSchema = new mongoose.Schema({
 
     role: {
         type: String,
-        enum: ['user', 'admin'],
-        default: user
+        enum: ['CUSTOMER', 'BUSINESS', 'SUPER-ADMIN'],
+        default: CUSTOMER
     },
 
     pointsBalance: {
