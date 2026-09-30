@@ -1,4 +1,4 @@
-const express = require('express');
+const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
     firstName: {
@@ -36,10 +36,15 @@ const userSchema = new mongoose.Schema({
         trim: true,
     },
 
+    passwordChangedAt: {
+        type: Date,
+        select: false
+    },
+
     role: {
         type: String,
-        enum: ['CUSTOMER', 'BUSINESS', 'SUPER-ADMIN'],
-        default: CUSTOMER
+        enum: ['CUSTOMER', 'BUSINESS', 'ADMIN'],
+        default: 'CUSTOMER'
     },
 
     pointsBalance: {
@@ -50,7 +55,27 @@ const userSchema = new mongoose.Schema({
 
     isActive: {
         type: Boolean,
-        deafault: true,
+        default: true,
+    },
+
+    isEmailVerified: {
+        type: Boolean,
+        default: false,
+    },
+
+    emailVerificationCode: {
+        type: String,
+        select: false
+    },
+
+    emailVerificationExpires: {
+        type: Date,
+        select: false
+    },
+
+    emailVerificationLastSentAt: {
+        type: Date,
+        select: false,
     },
 
 },
